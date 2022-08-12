@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/{id}")
-    public Optional<UserModel> getById(@PathVariable("id") Long id){ //optional por si falla o el id no existe
+    public Optional<UserModel> getUserById(@PathVariable("id") Long id){ //optional por si falla o el id no existe
         return this.userService.getById(id);
     }
 
@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @DeleteMapping (path = "/{id}")
-    public String deleteById(@PathVariable("id") Long id){
+    public String deleteUserById(@PathVariable("id") Long id){
         boolean ok = this.userService.deleteUser(id);
         if (ok){
             return "User id " + id + " was deleted successfully";
@@ -40,32 +40,28 @@ public class UserController {
         }
     }
 
-    @GetMapping("/priority")
-    public ArrayList<UserModel>getByPriority(@RequestParam("priority") Integer priority){
+    @GetMapping(path = "/priority")
+    public ArrayList<UserModel>getUserByPriority(@RequestParam("priority") Integer priority){
         return this.userService.getByPriority(priority);
     }
 
-    @GetMapping("/priorityGreater")
-    public ArrayList<UserModel>getByPriorityGreaterThan(@RequestParam("priorityGreaterThan") Integer priority){
+    @GetMapping(path = "/priorityGreater")
+    public ArrayList<UserModel>getUserByPriorityGreaterThan(@RequestParam("greaterThan") Integer priority){
         return this.userService.getPriorityGreaterThan(priority);
     }
 
     @GetMapping("/email")
-    public UserModel getByEmail(@RequestParam("email") String email){
+    public ArrayList<UserModel> getUserByEmail(@RequestParam("email") String email){
         return this.userService.getByEmail(email);
     }
 
     @GetMapping("/name")
-    public UserModel getByName(@RequestParam("name") String name){
+    public ArrayList<UserModel> getUserByName(@RequestParam("name") String name){
         return this.userService.getByName(name);
     }
 
     @GetMapping("/nameContains")
-    public ArrayList<UserModel> getByNameContaining(@RequestParam("name") String name){
-        return this.userService.getNameContaining(name);
+    public ArrayList<UserModel> getUserByNameContaining(@RequestParam("name") String name){
+        return this.userService.getNamesContaining(name);
     }
-
-
-
-
 }

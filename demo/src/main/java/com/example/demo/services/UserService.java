@@ -44,16 +44,16 @@ public class UserService {
         return (ArrayList<UserModel>) userRepository.findByPrioridadGreaterThan(priority);
     }
 
-    public UserModel getByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public ArrayList<UserModel> getByEmail(String email) {
+        return (ArrayList<UserModel>) userRepository.findByEmail(email);
     }
 
-    public UserModel getByName(String name){
-        return userRepository.findByNombre(name);
+    public ArrayList<UserModel> getByName(String name){
+        return (ArrayList<UserModel>) userRepository.findByNombre(name);
     }
 
-    public ArrayList<UserModel> getNameContaining(String name){
-        return (ArrayList<UserModel>) userRepository.findByNombreContaining(name);
+    public ArrayList<UserModel> getNamesContaining(String name){
+        return (ArrayList<UserModel>) userRepository.findAllByNombreContains(name);
     }
 }
 
